@@ -11,9 +11,9 @@ where d.department_id = e.department_id
 and d.department_name in ('IT'，'Sales')
 GROUP BY department_name;
 ```
-运行结果:
-![]()
-优化结果:
+运行结果:  
+![](https://github.com/lzq333/oracle/blob/master/test1/1.png)
+优化结果:  
 ![]()
 
 查询2:
