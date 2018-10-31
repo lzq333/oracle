@@ -2,9 +2,8 @@
 
 ## 实验内容
 
-### 1.在pdborcl插接式数据中创建一个新的本地角色con_res_view，
-该角色包含connect和resource角色，同时也包含CREATE VIEW权限，这样任何拥有con_res_view的用户就同时拥有这三种权限。
-、、、sql
+### 1.在pdborcl插接式数据中创建一个新的本地角色con_res_view，该角色包含connect和resource角色，同时也包含CREATE VIEW权限，这样任何拥有con_res_view的用户就同时拥有这三种权限。
+```sql
 $ sqlplus system/123@pdborcl
 SQL> CREATE ROLE con_res_view;
 Role created.
