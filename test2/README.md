@@ -21,7 +21,7 @@ User altered.
 SQL> GRANT con_res_view TO new_user;
 Grant succeeded.
 SQL> exit
-、、、
+```
 ![]()
 
 ### 第二步：新用户new_user连接到pdborcl，创建表mytable和视图myview，插入数据，最后将myview的SELECT对象权限授予hr用户。
