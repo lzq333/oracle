@@ -15,6 +15,7 @@ CREATE or REPLACE PACKAGE MyPack IS
   FUNCTION Get_SaleAmount_Employee(V_EMPLOYEE_ID NUMBER) RETURN NUMBER;
   PROCEDURE Get_Employees(V_EMPLOYEE_ID NUMBER);
 END MyPack;
+```
 # 2.在MyPack中创建一个函数Get_SaleAmount_Department ，查询部门表，统计每个部门的销售总金额，每个部门的销售额是由该部门的员工(ORDERS.EMPLOYEE_ID)完成的销售额之和。函数Get_SaleAmount_Department要求输入的参数是部门号，输出部门的销售金额。
 ## 创建函数Get_SaleAmount_Department输出部门的销售金额。
 ```sql
@@ -34,6 +35,7 @@ CREATE or REPLACE PACKAGE BODY MyPack IS
 ...
 
 END MyPack;
+```
 ## 测试语句
 ```sql
 SELECT count(*) FROM orders;
@@ -48,10 +50,10 @@ SELECT MyPack.Get_SaleAmount_Department (11) AS 部门11应收金额,MyPack.Get_
   部门11应收金额   部门12应收金额
 ---------- ----------
 70733729.5 69991326.5
-
+```
 ## 3..在MyPack中创建一个过程，在过程中使用游标，递归查询某个员工及其所有下属，子下属员工。过程的输入参数是员工号，输出员工的ID,姓名，销售总金额。信息用dbms_output包中的put或者put_line函数。输出的员工信息用左添加空格的多少表示员工的层次（LEVEL）。
 ### 首先需创建一个函数Get_SaleAmount_Employee获取员工的销售总金额。
-sql
+``` sql
 CREATE or REPLACE PACKAGE BODY MyPack IS
 
 ...
@@ -68,8 +70,9 @@ CREATE or REPLACE PACKAGE BODY MyPack IS
 ...
 
 END MyPack;
+```
 ### 创建过程GET_EMPLOYEES，输出员工的ID,姓名，销售总金额。
-sql
+``` sql
 CREATE or REPLACE PACKAGE BODY MyPack IS
 
 ...
@@ -94,9 +97,9 @@ PROCEDURE GET_EMPLOYEES(V_EMPLOYEE_ID NUMBER) --创建过程GET_EMPLOYEES
 ...
 
 END MyPack;
-`` sql
+```
 ### 测试语句
-sql
+``` sql
 SET SERVEROUTPUT ON
 DECLARE
   V_EMPLOYEE_ID NUMBER;    
@@ -106,7 +109,9 @@ BEGIN
   V_EMPLOYEE_ID := 11;
   MYPACK.Get_Employees (  V_EMPLOYEE_ID => V_EMPLOYEE_ID) ;    
 END;
+```
 ### 脚本输出
+``` sql
 1 李董事长 
     11 张总 35034887.23
         111 吴经理 35269982.17
@@ -119,5 +124,6 @@ END;
     112 白经理 35463747.34
 
 PL/SQL 过程已成功完成。
+```
 ## 4 由于订单只是按日期分区的，上述统计是全表搜索，因此统计速度会比较慢，如何提高统计的速度呢？
 ### 根据情况建立不同的索引，优化查询条件。
